@@ -10,38 +10,34 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
-import com.facebook.react.bridge.JSIModulePackage; // Import this
-import com.swmansion.reanimated.ReanimatedJSIModulePackage; // Import this
+
 class MainApplication : Application(), ReactApplication {
-@Override
-protected JSIModulePackage getJSIModulePackage() {
-  return new ReanimatedJSIModulePackage(); // Add this line
-}
-  override val reactNativeHost: ReactNativeHost =
-      object : DefaultReactNativeHost(this) {
-        override fun getPackages(): List<ReactPackage> =
-            PackageList(this).packages.apply {
-              // Packages that cannot be autolinked yet can be added manually here, for example:
-              // add(MyReactNativePackage())
-            }
 
-        override fun getJSMainModuleName(): String = "index"
+    override val reactNativeHost: ReactNativeHost =
+        object : DefaultReactNativeHost(this) {
+            override fun getPackages(): List<ReactPackage> =
+                PackageList(this).packages.apply {
+                    // Add any packages that cannot be autolinked here
+                    // Example: add(MyReactNativePackage())
+                }
 
-        override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+            override fun getJSMainModuleName(): String = "index"
 
-        override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-        override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
-      }
+            override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
-  override val reactHost: ReactHost
-    get() = getDefaultReactHost(applicationContext, reactNativeHost)
+            override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+            override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
+        }
 
-  override fun onCreate() {
-    super.onCreate()
-    SoLoader.init(this, false)
-    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
-      // If you opted-in for the New Architecture, we load the native entry point for this app.
-      load()
+    override val reactHost: ReactHost
+        get() = getDefaultReactHost(applicationContext, reactNativeHost)
+
+    override fun onCreate() {
+        super.onCreate()
+        SoLoader.init(this, false)
+        if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            // Load the native entry point if using the New Architecture
+            load()
+        }
     }
-  }
 }

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Platform,
 } from 'react-native';
 import ScreenIcon from '../assets/svg/ScreenIcon';
 import Seat from '../assets/svg/Seat';
@@ -45,7 +46,7 @@ const TicketSelection = () => {
 
   return (
     <View style={styles.contentView}>
-      <StatusBar barStyle={'default'} backgroundColor={Colors.White} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={Colors.White} />
       <HeaderCom
         onPress={() => navigation.goBack()}
         title={'The King’s Man'}
@@ -148,7 +149,7 @@ export default TicketSelection;
 const styles = StyleSheet.create({
   contentView: {
     flex: 1,
-    top: getHeight(5),
+    top: Platform.OS === 'android' ? 0 : getHeight(5),
   },
 
   text: {
