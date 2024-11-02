@@ -12,12 +12,16 @@ import {Colors} from '../theme';
 interface Props extends TouchableOpacityProps {
   type: 'Primary' | 'Secondary';
   title: string;
+  width: number;
 }
-const CustomButton: FC<Props> = ({type, title, ...extra}) => {
+const CustomButton: FC<Props> = ({type, width, title, ...extra}) => {
   return (
     <TouchableOpacity
       style={[
         styles.container,
+        {
+          width: width ? width : getWidth(60),
+        },
         type === 'Primary' && {
           backgroundColor: Colors.Skyblue,
         },
@@ -38,7 +42,7 @@ const styles = StyleSheet.create({
   },
   container: {
     borderWidth: 2,
-    width: getWidth(60),
+
     height: getHeight(5),
     alignItems: 'center',
     justifyContent: 'center',

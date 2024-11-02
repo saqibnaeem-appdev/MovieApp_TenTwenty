@@ -20,9 +20,13 @@ import {
 import CustomButton from '../components/CustomButton';
 import useOrientation from '../hooks/useOrientation';
 import VideoPlayer from '../components/VideoPlayer';
+import {RootStackRoots} from '../lib/Constants';
+import {useNavigation} from '@react-navigation/native';
 
-const MovieDetailScreen = ({navigation, route}: any) => {
+const MovieDetailScreen = ({route}: any) => {
   const {id} = route.params;
+  const navigation = useNavigation();
+
   const [movieDetail, setMovieDetail] = useState<
     undefined | MovieDetailProps
   >();
@@ -92,7 +96,11 @@ const MovieDetailScreen = ({navigation, route}: any) => {
                 year: 'numeric',
               })}
           </Text>
-          <CustomButton title="Get Tickets" type="Primary" />
+          <CustomButton
+            title="Get Tickets"
+            type="Primary"
+            onPress={() => navigation.navigate(RootStackRoots.ticketBooking)}
+          />
           <CustomButton
             onPress={handleWatchTrailer}
             title="Watch Trailer"

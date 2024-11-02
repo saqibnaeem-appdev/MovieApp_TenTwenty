@@ -4,7 +4,9 @@ import DashBoardScreen from '../screens/bottomtab/DashBoardScreen';
 import BottomTab from './BottomTab';
 import {RootStackRoots} from '../lib/Constants';
 import MovieDetailScreen from '../screens/MovieDetailScreen';
+import TicketBooking from '../screens//TicketBooking';
 import {Colors} from '../theme';
+import TicketSelection from '../screens/TicketSelection';
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
@@ -34,6 +36,20 @@ const RootStack = () => {
           }}
           name={RootStackRoots.movieDetail}
           component={MovieDetailScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={RootStackRoots.ticketBooking}
+          component={TicketBooking}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name={RootStackRoots.ticketSelection}
+          component={TicketSelection}
         />
       </Stack.Navigator>
     </NavigationContainer>

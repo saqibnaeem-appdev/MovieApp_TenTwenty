@@ -1,6 +1,8 @@
 export const RootStackRoots = {
   bottomTab: 'BottomTab',
   movieDetail: 'MovieDetailScreen',
+  ticketBooking: 'TicketBooking',
+  ticketSelection: 'TicketSelection',
 };
 export const BottomTabRoots = {
   dashboard: 'DashBoardScreen',
